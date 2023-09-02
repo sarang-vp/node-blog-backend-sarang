@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Products</title>
+  </head>
+  <body>
+    <h1>Products</h1>
+    <ul>
+      <% products.forEach(product => { %>
+      <li>
+        <h2><%= product.name %></h2>
+        <p><%= product.description %></p>
+        <p>Price: <%= product.price %></p>
+        <% product.images.forEach(image => { %>
+        <img src="/uploads/<%= image %>" alt="Product Image" width="200" />
+        <% }) %>
+        <form
+          method="POST"
+          action="/products/<%= product._id %>?_method=DELETE"
+        >
+          <button type="submit">Delete</button>
+        </form>
+
+        <a href="/products/<%= product._id %>/edit">Edit</a>
+        <!-- Add this line -->
+      </li>
+      <% }) %>
+    </ul>
+    <a href="/products/add">Add Product</a>
+  </body>
+</html>
